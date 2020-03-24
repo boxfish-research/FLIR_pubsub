@@ -5,7 +5,7 @@ AssertPathExists=/home/rov/.virtualenvs/flir
 [Service]
 Type=simple
 PIDFile=/run/jupyter.pid
-ExecStart=/bin/bash /home/rov/git/FLIR-pubsub/run/start-jupyter-service.sh
+ExecStart=/bin/bash /home/rov/git/FLIR_pubsub/run/start-jupyter-service.sh
 WorkingDirectory=/home/rov/
 Restart=always
 RestartSec=10

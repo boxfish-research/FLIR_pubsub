@@ -4,7 +4,7 @@ AssertPathExists=/home/rov/.virtualenvs/flir
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /home/rov/git/FLIR-pubsub/run/start-flir-server-service.sh
+ExecStart=/bin/bash /home/rov/git/FLIR_pubsub/run/start-flir-server-service.sh
 WorkingDirectory=/home/rov/
 Restart=always
 RestartSec=10
