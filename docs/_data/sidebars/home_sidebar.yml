@@ -19,6 +19,9 @@ entries:
       title: Setting up an UPboard
       url: /UPBoard_setup
     - output: web,pdf
+      title: Scratchpad
+      url: /scratchpad
+    - output: web,pdf
       title: Multi PySpin Camera Utilities
       url: /multi_pyspin
     - output: web,pdf
@@ -28,8 +31,8 @@ entries:
       title: Flir Camera Client
       url: /FLIR_client_utils
     - output: web,pdf
-      title: Title
-      url: /test2
+      title: FLIR Video Capture
+      url: /FLIR_capture
     - output: web,pdf
       title: FLIR Camera Calibration
       url: /camera_calibration_utils

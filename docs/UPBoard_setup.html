@@ -6,6 +6,7 @@ keywords: fastai
 sidebar: home_sidebar
 
 summary: "A guide for setting up and [Upboard Intel SBC](https://up-board.org/upsquared/specifications/)"
+description: "A guide for setting up and [Upboard Intel SBC](https://up-board.org/upsquared/specifications/)"
 ---
 <!--
 
@@ -18,13 +19,17 @@ summary: "A guide for setting up and [Upboard Intel SBC](https://up-board.org/up
 -->
 
 <div class="container" id="notebook-container">
+        
+    {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Ubuntu-18.04">Ubuntu 18.04<a class="anchor-link" href="#Ubuntu-18.04">&#182;</a></h3><blockquote><p>The upboard come with Ubuntu 16.04. We decided to upgrade to 18.04</p>
+<h3 id="Ubuntu-18.04">Ubuntu 18.04<a class="anchor-link" href="#Ubuntu-18.04"> </a></h3><blockquote><p>The upboard come with Ubuntu 16.04. We decided to upgrade to 18.04</p>
 </blockquote>
 <p>Install ubuntu 18.04 from usb, on boot press F7 to set the boot sequence in necessary.<br>
 Set up a user <code>rov</code> with a password</p>
@@ -49,7 +54,7 @@ Check fsck boot log<br>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Install-SSH">Install SSH<a class="anchor-link" href="#Install-SSH">&#182;</a></h3><blockquote><p>To allow remote terminal access</p>
+<h3 id="Install-SSH">Install SSH<a class="anchor-link" href="#Install-SSH"> </a></h3><blockquote><p>To allow remote terminal access</p>
 </blockquote>
 <p><code>sudo apt install openssh-server</code><br>
 Connect remotely with ethernet cable and find the upboard  address with<br>
@@ -64,8 +69,8 @@ If you get "Host key verification failed"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Install-SAMBA">Install SAMBA<a class="anchor-link" href="#Install-SAMBA">&#182;</a></h3><blockquote><p>optional but allows easy file copy to and from the rov via pc<br>
-https: //magpi.raspberrypi.org/articles/samba-file-server</p>
+<h3 id="Install-SAMBA">Install SAMBA<a class="anchor-link" href="#Install-SAMBA"> </a></h3><blockquote><p>optional but allows easy file copy to and from the rov via pc<br>
+<a href="https://magpi.raspberrypi.org/articles/samba-file-server">https://magpi.raspberrypi.org/articles/samba-file-server</a></p>
 </blockquote>
 
 <pre><code>sudo apt-get update
@@ -94,8 +99,8 @@ From the pc with file navigator or explorer connect to <code>smb://10.42.0.xxx/s
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Install-Ubuntu-kernel-4.15.0-7-&amp;-mraa">Install Ubuntu kernel 4.15.0 7 &amp; mraa<a class="anchor-link" href="#Install-Ubuntu-kernel-4.15.0-7-&amp;-mraa">&#182;</a></h3><blockquote><p>for UP from PPA on Ubuntu 18.04  - to enable GPIO 
-(see https: //wiki.up-community.org/Ubuntu)</p>
+<h3 id="Install-Ubuntu-kernel-4.15.0-7-&amp;-mraa">Install Ubuntu kernel 4.15.0 7 &amp; mraa<a class="anchor-link" href="#Install-Ubuntu-kernel-4.15.0-7-&amp;-mraa"> </a></h3><blockquote><p>for UP from PPA on Ubuntu 18.04  - to enable GPIO 
+(see <a href="https://wiki.up-community.org/Ubuntu">https://wiki.up-community.org/Ubuntu</a>)</p>
 </blockquote>
 
 <pre><code>sudo add-apt-repository ppa:ubilinux/up
@@ -116,9 +121,9 @@ sudo apt-get install python-mraa python3-mraa node-mraa libmraa-java</code></pre
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Install-virtualenv-and-CV2">Install virtualenv and CV2<a class="anchor-link" href="#Install-virtualenv-and-CV2">&#182;</a></h3><blockquote><p>optional to keep python dependencies separate</p>
+<h3 id="Install-virtualenv-and-CV2">Install virtualenv and CV2<a class="anchor-link" href="#Install-virtualenv-and-CV2"> </a></h3><blockquote><p>optional to keep python dependencies separate</p>
 </blockquote>
-<p>see https: //itnext.io/virtualenv-with-virtualenvwrapper-on-ubuntu-18-04-goran-aviani-d7b712d906d5</p>
+<p>see <a href="https://itnext.io/virtualenv-with-virtualenvwrapper-on-ubuntu-18-04-goran-aviani-d7b712d906d5">https://itnext.io/virtualenv-with-virtualenvwrapper-on-ubuntu-18-04-goran-aviani-d7b712d906d5</a></p>
 
 <pre><code>sudo apt install python3-pip
 pip3 install virtualenv virtualenvwrapper
@@ -152,10 +157,10 @@ import cv2</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Install-FLIR-camera-Spinaker-&amp;-python-sdk">Install FLIR camera Spinaker &amp; python sdk<a class="anchor-link" href="#Install-FLIR-camera-Spinaker-&amp;-python-sdk">&#182;</a></h3><blockquote><p>FLIR camera drivers</p>
+<h3 id="Install-FLIR-camera-Spinaker-&amp;-python-sdk">Install FLIR camera Spinaker &amp; python sdk<a class="anchor-link" href="#Install-FLIR-camera-Spinaker-&amp;-python-sdk"> </a></h3><blockquote><p>FLIR camera drivers</p>
 </blockquote>
 <p>Download spinaker amd64 from
-<code>https: //flir.app.boxcn.net/v/SpinnakerSDK/folder/74729115388</code>  Extract to a director such as  <code>home/rov/spinnaker-1.27.0.48-amd64</code><br>
+<code>https://flir.app.boxcn.net/v/SpinnakerSDK/folder/74729115388</code>  Extract to a director such as  <code>home/rov/spinnaker-1.27.0.48-amd64</code><br>
 Follow instructions in readme i.e</p>
 
 <pre><code>cd ~/spinnaker-1.27.0.48-amd64
@@ -173,12 +178,12 @@ python -m pip install spinnaker_python-1.27.0.48-cp36-cp36m-linux_x86_64.whl</co
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Install-the-FLIR-server-from-github">Install the FLIR server from github<a class="anchor-link" href="#Install-the-FLIR-server-from-github">&#182;</a></h3><blockquote><p>The the server polls connected cameras and runs them depending on client demand.<br>
+<h3 id="Install-the-FLIR-server-from-github">Install the FLIR server from github<a class="anchor-link" href="#Install-the-FLIR-server-from-github"> </a></h3><blockquote><p>The the server polls connected cameras and runs them depending on client demand.<br>
 It requires a yaml file for each camera connected.</p>
 </blockquote>
 
 <pre><code>sudo apt install git
-git clone https: //github.com/johnnewto/FLIR_pubsub.git</code></pre>
+git clone https://github.com/johnnewto/FLIR_pubsub.git</code></pre>
 <p><strong>To run server</strong></p>
 
 <pre><code>workon flir 

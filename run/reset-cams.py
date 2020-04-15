@@ -1,15 +1,15 @@
 import PySpin
+if __name__ == '__main__':
+    _SYSTEM = PySpin.System.GetInstance()
+    # reSet cameras
+    cams = _SYSTEM.GetCameras()
+    for cam in cams:
+        cam.Init()
+        print('cam', cam.GetUniqueID())
+        cam.DeviceReset.Execute()
+        # cam.DeInit()
 
-_SYSTEM = PySpin.System.GetInstance()
-# reSet cameras
-cams = _SYSTEM.GetCameras()
-for cam in cams:
-    cam.Init()
-    print('cam', cam.GetUniqueID())
-    cam.DeviceReset.Execute()
-    # cam.DeInit()
+        # del cam
 
-    # del cam
-
-cams.Clear()
-# _SYSTEM.ReleaseInstance()
+    cams.Clear()
+    # _SYSTEM.ReleaseInstance()

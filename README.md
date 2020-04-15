@@ -34,7 +34,7 @@ Normally it is best to setup a virtual environment, call it flir, and install th
 
 ### Example of a Multiple Camera Server
 
-```
+```python
 from  FLIR_pubsub import FLIR_server_utils
 FLIR_server_utils.register()  
 
@@ -50,7 +50,7 @@ For more details see [FLIR_server_utils](https://johnnewto.github.io/FLIR_pubsub
 
 ### Example of a Camera Client
 
-```
+```python
 from  FLIR_pubsub import FLIR_client_utils
 if __name__== "__main__":
 

@@ -2,7 +2,11 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"setup": "90_multi_pyspin.ipynb",
+index = {"Error": "90_multi_pyspin.ipynb",
+         "MultiPyspinError": "90_multi_pyspin.ipynb",
+         "CamArrival": "90_multi_pyspin.ipynb",
+         "CamRemoval": "90_multi_pyspin.ipynb",
+         "setup": "90_multi_pyspin.ipynb",
          "init": "90_multi_pyspin.ipynb",
          "deinit": "90_multi_pyspin.ipynb",
          "get_gain": "90_multi_pyspin.ipynb",
@@ -19,6 +23,7 @@ index = {"setup": "90_multi_pyspin.ipynb",
          "reset_cameras": "90_multi_pyspin.ipynb",
          "register": "92_FLIR_server_utils.ipynb",
          "SERIAL_DICT": "90_multi_pyspin.ipynb",
+         "except": "92_FLIR_server_utils.ipynb",
          "CameraThread": "92_FLIR_server_utils.ipynb",
          "GPIOThread": "92_FLIR_server_utils.ipynb",
          "server": "92_FLIR_server_utils.ipynb",
@@ -37,8 +42,8 @@ modules = ["multi_pyspin.py",
            "FLIR_videocapture.py",
            "FLIR_camera_calibration_utils.py"]
 
-doc_url = "https://johnnewto.github.io/FLIR_pubsub/"
+doc_url = "https://boxfish-research.github.io/FLIR_pubsub/"
 
-git_url = "https://github.com/johnnewto/FLIR_pubsub/tree/master/"
+git_url = "https://github.com/boxfish-research/FLIR_pubsub/tree/master/"
 
 def custom_doc_links(name): return None

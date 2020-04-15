@@ -4,7 +4,6 @@ __all__ = ['CameraThread', 'GPIOThread', 'register', 'server', 'PORT']
 
 # Cell
 
-# from  boxfish_stereo_cam.multipyspin import *
 import FLIR_pubsub.multi_pyspin as multi_pyspin
 
 import time
@@ -13,13 +12,16 @@ import threading
 import cv2
 import imutils
 
+# Internal Cell
+
 try:
-    import mraa
+    import FLIR_pubsub.mraa as mraa
     use_mraa = True
 except:
     use_mraa = False
 
 # Cell
+# _SYSTEM = PySpin.System.GetInstance()
 
 class CameraThread:
     '''
@@ -72,10 +74,13 @@ class CameraThread:
         print(f'Starting : {self.name}')
         i = 0
         while True:
+            # cams = _SYSTEM.GetCameras()
+            # if len(cams) == 0:
+            #     print('[Error]: No cameras found')
+            #     break
+
             i += 1
 
-            # cam = multi_pyspin._get_cam(serial)
-            # image = cam.GetNextImage()
             try:
                 image, image_dict = multi_pyspin.get_image(self.serial)
                 img = image.GetNDArray()
@@ -85,8 +90,10 @@ class CameraThread:
 
                 md = {'frameid': i, 'encoding': self.encoding, 'size': img.size, 'shape': shape}
                 self.send_array( img, framedata=md)
+
             except Exception as e:
-                print(str(e))
+                print(f'[ERROR]: {e}')
+                break
 
 
             if self.preview:
@@ -107,9 +114,13 @@ class CameraThread:
             if self.stopped:
                 break
 
-
-        multi_pyspin.end_acquisition(self.serial)
-        multi_pyspin.deinit(self.serial)
+        try:
+            multi_pyspin.end_acquisition(self.serial)
+            multi_pyspin.deinit(self.serial)
+        # except KeyboardInterrupt:
+        #     raise
+        except Exception as e:
+            print(f'[Error]: {e}')
 
 # Cell
 class GPIOThread:
@@ -118,12 +129,17 @@ class GPIOThread:
     Pin number and frequency can be set
     '''
     def __init__(self, pin_no, freq=2.0):
+        global use_mraa
         self.stopped = True
         # Export the GPIO pin for use
         if use_mraa:
-            self.pin = mraa.Gpio(pin_no)
-            self.pin.dir(mraa.DIR_OUT)
-            self.pin.write(0)
+            try:
+                self.pin = mraa.Gpio(pin_no)
+                self.pin.dir(mraa.DIR_OUT)
+                self.pin.write(0)
+            except ValueError as e:
+                print(f'[ERROR] GPIO  not working {e}, disabling use')
+                use_mraa = False
         self.period = 1 / (2 * freq)
 
     def start(self):
@@ -205,6 +221,7 @@ def server(yaml_dir):
 
     gpio1 = GPIOThread(29, 2.0).start()
     gpio2 = GPIOThread(31, 10.0).start()
+    keyboard_interrupt = False
     while True:
         try:
             message = socket_rep.recv().decode("utf-8")
@@ -217,24 +234,41 @@ def server(yaml_dir):
                     pt[0].start()
 
         except zmq.error.Again:
-            pass
-
+            pass  # try again as zmq resource is temporarily unavailable
         except KeyboardInterrupt:
+            keyboard_interrupt = True
             break
-
         except Exception as e:
             print(str(e))
+            raise
+
+        # do_break = True
+        # for ct in pub_threads:
+        #     if ct.thread.is_alive():
+        #         do_break = False
+        # if do_break:
+        #     print(f'[ERROR]: No camera are alive, [todo] so exiting')
+        #     break
+        if len(multi_pyspin.SERIAL_DICT) == 0:
+            print('No cameras present: exiting ...')
+            break
 
     for ct in pub_threads:
         print(f"stopping {ct.name}")
+
         ct.stop()
 
+    # shut down all resources
     gpio1.stop()
     gpio2.stop()
     cv2.destroyAllWindows()
     socket_pub.close()
     socket_rep.close()
     context.term()
+
+    if keyboard_interrupt:
+        raise KeyboardInterrupt
+
 
 if __name__ == '__main__':
     import sys

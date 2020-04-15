@@ -4,10 +4,11 @@
     "General Camera Calibration": "/camera_calibration_tutorial",
     "Misc Routines": "/misc_routines",
     "Setting up an UPboard": "/UPBoard_setup",
+    "Scratchpad": "/scratchpad",
     "Multi PySpin Camera Utilities": "/multi_pyspin",
     "Flir Camera Server": "/FLIR_server_utils",
     "Flir Camera Client": "/FLIR_client_utils",
-    "Title": "/test2",
+    "FLIR Video Capture": "/FLIR_capture",
     "FLIR Camera Calibration": "/camera_calibration_utils"
   }
 }

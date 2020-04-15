@@ -122,7 +122,7 @@ width = 1000
 height = 750
 def client(name='FrontLeft', url='localhost'):
     """ Received frames from a single camera. Must have the server running"""
-    # cv2.namedWindow(name)
+    cv2.namedWindow(name)
     chan = FLIR_Client(name=name, url=url)
     i = 0
     while True:
@@ -132,8 +132,10 @@ def client(name='FrontLeft', url='localhost'):
         except KeyboardInterrupt:
             break
         k = cv2.waitKey(10)
-        if k == 27 or k == 3:
-           break  # esc to quit
+
+        if k == 27:  # esc
+            print('bye)')
+            break  # esc to quit
 
         if frame is not None:
             frame = imutils.resize(frame, width=width, height=height)
@@ -145,7 +147,7 @@ def client(name='FrontLeft', url='localhost'):
             if k == ord('c'):
                 i = 0
                 txt = f'Reset name to {topic}-{i}.jpg'
-            elif k >= ord('s'):
+            elif k == ord('s'):
                 txt = f'Saving {topic}-{i}.jpg'
                 cv2.imwrite(f'{topic}-{i}.jpg', frame)
                 i += 1
@@ -154,6 +156,7 @@ def client(name='FrontLeft', url='localhost'):
                 cv2.putText(frame, txt, (100, 500), cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 255, 255), 5)
                 cv2.imshow(topic, frame)
                 cv2.waitKey(1000)
+
 
     chan.close()
     cv2.destroyAllWindows()
